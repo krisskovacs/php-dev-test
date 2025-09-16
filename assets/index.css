@@ -137,3 +137,18 @@ main {
   background-color:white;
   border-radius: 0.3rem;
 }
+
+.posts_list {
+  list-style-type: none;
+  padding: 0.5rem;
+}
+
+.posts_list_li {
+  padding: 0.5rem;
+}
+
+.posts_list_url {
+  font-weight: bold;
+  text-decoration: none;
+  color:black;
+}

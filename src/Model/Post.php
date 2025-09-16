@@ -10,6 +10,7 @@ class Post
     public string $created_at;
     public string $modified_at;
     public string $author;
+    public string $author_fullname;
 
     private $pdo;
     private $table = "posts";

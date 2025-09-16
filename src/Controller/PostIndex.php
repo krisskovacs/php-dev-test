@@ -12,12 +12,20 @@ class PostIndex extends Controller
      * @var array<Post>
      */
     private array $posts = [];
+    private $pdo;
+    private $table = "posts";
+
+    public function __construct($db) {
+        $this->pdo = $db;
+        $this->loadData();
+    }
 
     public function getContext(): Context
     {
         $context = new Context();
         $context->title = 'Posts';
         $context->content = strval(count($this->posts));
+        $context->posts = $this->posts;
         return $context;
     }
 
@@ -28,7 +36,11 @@ class PostIndex extends Controller
 
     protected function loadData(): void
     {
-        // TODO: Load posts from database here.
-        $this->posts = [];
+        $query = "SELECT posts.*, authors.full_name as author_fullname FROM {$this->table}
+                INNER JOIN authors ON posts.author = authors.id 
+                ORDER BY posts.created_at DESC";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute();
+        $this->posts = $stmt->fetchAll();
     }
 }
