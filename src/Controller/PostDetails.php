@@ -15,11 +15,18 @@ class PostDetails extends Controller
      * @phpstan-ignore property.unusedType
      */
     private ?Model\Post $post = null;
+    private $table = "posts";
+    private $pdo;
+
+    public function __construct($db, $params = []) {
+        $this->params = $params;
+        $this->pdo = $db;
+        $this->loadData();
+    }
 
     public function getContext(): Context
     {
         $context = new Context();
-
         if ($this->post === null) {
             $context->title = 'Not Found';
             $context->content = "A post with id {$this->params[0]} was not found.";
@@ -52,6 +59,22 @@ class PostDetails extends Controller
     protected function loadData(): void
     {
         // TODO: Load post from database here. $this->params[0] is the post id.
-        $this->post = null;
+        $query = "SELECT posts.*, authors.full_name as author_fullname FROM {$this->table}
+                INNER JOIN authors ON posts.author = authors.id
+                WHERE posts.id = :id";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindParam(':id', $this->params[0]);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        if ($result !== false) {
+            $post = new Model\Post($this->pdo);
+            foreach ($result as $key => $value) {
+                if (property_exists($post, $key)) {
+                    $post->$key = $value;
+                }
+            }
+            $this->post = $post;
+        }
     }
 }
