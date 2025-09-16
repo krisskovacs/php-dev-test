@@ -111,3 +111,9 @@ main {
   border-bottom: 1px solid #eee;
   padding: 0.5rem;
 }
+
+
+.rise_shine {
+  font-size:0.8rem;
+  font-style: italic;
+}
