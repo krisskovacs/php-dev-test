@@ -112,8 +112,12 @@ main {
   padding: 0.5rem;
 }
 
-
 .rise_shine {
   font-size:0.8rem;
   font-style: italic;
+}
+
+.img-product {
+  width:50%;
+  height:50%;
 }
