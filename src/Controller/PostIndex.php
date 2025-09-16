@@ -37,7 +37,7 @@ class PostIndex extends Controller
     protected function loadData(): void
     {
         $query = "SELECT posts.*, authors.full_name as author_fullname FROM {$this->table}
-                INNER JOIN authors ON posts.author = authors.id 
+                INNER JOIN authors ON posts.author = authors.id
                 ORDER BY posts.created_at DESC";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute();

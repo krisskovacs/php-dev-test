@@ -8,7 +8,6 @@ use silverorange\DevTest\Model\Post;
 
 class JsonImporter extends Controller
 {
-
     protected \PDO $db;
     private $postModel;
 
