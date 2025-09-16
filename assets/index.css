@@ -121,3 +121,19 @@ main {
   width:50%;
   height:50%;
 }
+
+.submit-frame button {
+  display:block;
+  margin: 0 auto;
+  font-weight: bold;
+  color:#666;
+  font-size: 1rem;
+  border-radius: 0.3rem;
+  padding:0.5rem;
+  cursor:pointer;
+}
+
+.submit-frame button:hover {
+  background-color:white;
+  border-radius: 0.3rem;
+}
