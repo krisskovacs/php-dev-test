@@ -49,6 +49,9 @@ class App
             $controller = new Controller\PostDetails($this->db, $params);
         } elseif (preg_match('@^/checkout/?$@', $path) === 1) {
             $controller = new Controller\Checkout($this->db, []);
+        } elseif (preg_match('@^/import/?$@', $path) === 1) {
+            $controller = new Controller\JsonImporter($this->db, []);
+            $imported = $controller->importJsonFiles(__DIR__);
         }
 
         return $controller;
