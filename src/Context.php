@@ -9,4 +9,6 @@ class Context
     public string $title = '';
     public string $content = '';
     public array $posts = [];
+    public string $body = '';
+    public string $author_fullname = '';
 }

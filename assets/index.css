@@ -152,3 +152,14 @@ main {
   text-decoration: none;
   color:black;
 }
+
+.postdetails_title {
+  border-bottom:1px solid black;
+  text-align:center;
+}
+
+.postdetails_author {
+  text-align:center;
+  font-size: 0.8rem;
+  font-style: italic;
+}
